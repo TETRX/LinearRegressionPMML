@@ -24,3 +24,12 @@ class Dataset:
 
     def data_lines(self):
         return self.matrix.tolist()
+
+    def get_X_y(self):
+        lists=self.matrix.tolist()
+        X=[]
+        y=[]
+        for list in lists:
+            X.append(list[:-1])
+            y.append(list[-1])
+        return ()
