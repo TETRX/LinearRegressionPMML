@@ -4,5 +4,5 @@ class DataNormalizer():
         std=dataset.columnwise_std()
         def norm(mean,std):
             return lambda num: (num-mean)/std
-        functions=[norm(mean[i],std[i]) for i in range(dataset.x)]
+        functions=[norm(mean[i],std[i]) for i in range(dataset.y)]
         return dataset.apply_functions(functions)

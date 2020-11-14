@@ -3,8 +3,12 @@ from numpy.core.fromnumeric import transpose
 import numpy
 
 class ElasticNetRegressionTrainer(LarsRegressionTrainer):
-
-    def get_cost_func(self, theta,X, y,j,lambda_1, lambda_2):
+    def __init__(self):
+        self.LAMBDAS_NUM=2
+        
+    def get_cost_func(self, theta,X, y,j,lambdas):
+        lambda_1=lambdas[0]
+        lambda_2=lambdas[1]
         def cost_func(theta_j):
             sum_all=0
             m=len(X)
@@ -30,3 +34,22 @@ class ElasticNetRegressionTrainer(LarsRegressionTrainer):
             return mean_all+lambda_1*norm_1+lambda_2*norm_2
         return cost_func
 
+    def cost(self, dataset,theta, lambdas):
+        lambda_1=lambdas[0]
+        lambda_2=lambdas[1]
+        sum_all=0
+        X,y=dataset.get_X_y()
+        m=len(X)
+        for k in range(m):
+            sum_k=0
+            for i in range(len(X[0])):
+                sum_k+=theta[i]*X[k][i]
+            sum_all+=(sum_k-y[k])**2
+        mean_all=1/m*sum_all
+
+        norm_1=0
+        norm_2=0
+        for i in range(len(theta)):
+            norm_2+=theta[i]**2
+            norm_1+=abs(theta[i])
+        return mean_all+lambda_1*norm_1+lambda_2*norm_2

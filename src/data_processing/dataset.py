@@ -32,4 +32,4 @@ class Dataset:
         for list in lists:
             X.append(list[:-1])
             y.append(list[-1])
-        return ()
+        return (X,y)
