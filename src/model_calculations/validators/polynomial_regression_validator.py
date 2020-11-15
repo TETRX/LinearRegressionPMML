@@ -1,8 +1,9 @@
 from .hyperparameter_regression_validator import HyperparameterRegressionValidator
+from ..a_regression_trainer import RegressionTrainer
 
 class PolynomialRegressionValidator(HyperparameterRegressionValidator):
 
-    def __init__(self, training_dataset, validation_dataset,degrees=[1,2,3,4,5],lambda_val=[0,0.1,0.2,0.4,0.8,1.6]):
+    def __init__(self, training_dataset, validation_dataset,degrees=[1,2,3,4,5],lambda_val=[0,0.1,0.4,1.6]):
         super().__init__(training_dataset,validation_dataset,degrees,lambda_val=lambda_val)
 
     def get_basis_func(self, params):

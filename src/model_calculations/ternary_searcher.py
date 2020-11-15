@@ -39,3 +39,4 @@ class TernarySearcher:
             return self.ternary_search(left_border,sample_b)
         if b<=r and b<=l:
             return self.ternary_search(sample_a,right_border)
+        return (right_border+left_border)/2
