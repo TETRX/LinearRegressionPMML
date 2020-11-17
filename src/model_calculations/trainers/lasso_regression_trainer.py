@@ -1,8 +1,8 @@
-from .a_lars_trainer import LarsRegressionTrainer
+from .coordinate_regression_trainer import CoordinateRegressionTrainer
 from numpy.core.fromnumeric import transpose
 import numpy
 
-class LassoRegressionTrainer(LarsRegressionTrainer):
+class LassoRegressionTrainer(CoordinateRegressionTrainer):
     def __init__(self):
         self.LAMBDAS_NUM=1
     def get_cost_func(self, theta,X, y,j,lambdas):

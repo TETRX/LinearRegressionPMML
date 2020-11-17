@@ -1,8 +1,8 @@
 class DataStandardizer():
     def normalize(self, dataset): #not standardize to be able to substitute DataNormalizer with this class (could be done more elegantly with common ancestor, but this also works)
         data_lines=dataset.data_lines()
-        mins=data_lines[0]
-        maxes=data_lines[0]
+        mins=[a for a in data_lines[0]]
+        maxes=[a for a in data_lines[0]]
         for line in data_lines:
             for i in range(len(line)):
                 if mins[i]>line[i]:

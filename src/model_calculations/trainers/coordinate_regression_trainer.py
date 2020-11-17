@@ -9,8 +9,6 @@ class CoordinateRegressionTrainer(RegressionTrainer):
         X,y=training_dataset.get_X_y()
         theta=[0 for j in range(len(X[0]))]
         for i in range(10*len(X[0])):
-            print(i)
-            print(self.cost(training_dataset,theta,lambdas))
             j=randint(0,len(X[0])-1)
             derivative_searcher=DerivativeSearcher(self.get_cost_func(theta,X,y,j,lambdas))
             theta[j]=derivative_searcher.minimalize(training_dataset,theta,j,lambdas)

@@ -11,8 +11,7 @@ class RegressionTrainer:
     @abc.abstractmethod
     def get_cost_func(self, theta,X, y,j):
         pass
-    def cost(self, dataset,theta, lambdas):
-        lambda_=lambdas[0]
+    def cost(self, dataset,theta):
         sum_all=0
         X,y=dataset.get_X_y()
         m=len(X)

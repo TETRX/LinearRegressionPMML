@@ -17,18 +17,10 @@ class HyperparameterRegressionValidator(RegressionValidator):
         for lambda_comb in all_lambda_comb:
             for param_comb in all_param_comb:
                 basis_functions=self.get_basis_func(param_comb)+[lambda x: x]
-                print("polynomial degrees: ")
-                print(param_comb)
-                print("lambdas: ")
-                print(lambda_comb)
                 functioned_dataset=self.training_dataset.apply_functions(basis_functions)
                 curr_theta=trainer.train(functioned_dataset,lambda_comb)
-                print("theta:")
-                print(curr_theta)
                 functioned_val_dataset=self.validation_dataset.apply_functions(basis_functions)
                 error=self.validate(trainer,curr_theta,functioned_val_dataset,lambda_comb)
-                print("error:")
-                print(error)
                 if error<best_error:
                     best_theta=curr_theta
                     best_error=error
@@ -39,10 +31,10 @@ class HyperparameterRegressionValidator(RegressionValidator):
         print(best_error)
         print(best_hyper[0])
         print(best_hyper[1])
-        return (best_hyper[0],self.get_basis_func(best_hyper[1]))
+        return (best_hyper[0],self.get_basis_func(best_hyper[1])+[lambda x: x] )
         
     def validate(self,trainer,theta,validation_dataset,lambdas_):
-        return trainer.cost(validation_dataset,theta,lambdas_)
+        return trainer.cost(validation_dataset,theta)
 
     @abstractmethod
     def get_basis_func(self,degrees):
